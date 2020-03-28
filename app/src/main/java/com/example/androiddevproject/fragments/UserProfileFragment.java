@@ -11,7 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.androiddevproject.ApiCallAdapter;
+import com.example.androiddevproject.ApiCallsInterFace;
+import com.example.androiddevproject.ApiResponse.LoginResponse;
 import com.example.androiddevproject.R;
+import com.example.androiddevproject.utils.Constants;
+
+import org.json.JSONObject;
+
+import okhttp3.RequestBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class UserProfileFragment extends Fragment {
 
@@ -33,5 +44,33 @@ public class UserProfileFragment extends Fragment {
         txtUsername = view.findViewById(R.id.txtUserName);
         super.onActivityCreated(savedInstanceState);
     }
+
+    private void singleUser() {
+        ApiCallsInterFace cancerApiService = ApiCallAdapter.getClient
+                (getActivity()).create(ApiCallsInterFace.class);
+
+        JSONObject jsonObject = new JSONObject();
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse(Constants.MEDIA_PARSE),
+                jsonObject.toString());
+        Call<LoginResponse> call = cancerApiService.blockUser(body);
+        call.enqueue(new Callback<LoginResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<LoginResponse> call,
+                                   @NonNull Response<LoginResponse> response) {
+                if (response.body() != null && response.body().isSuccess()) {
+
+                }else {
+                    showGenericApiError();
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<BaseApiResponse> call, @NonNull Throwable t) {
+                hideProgressDialog();
+                showGenericApiError();
+            }
+        });
+    }
+
 }
 

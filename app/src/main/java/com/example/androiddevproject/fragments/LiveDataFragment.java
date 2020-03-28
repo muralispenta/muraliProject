@@ -69,13 +69,15 @@ public class LiveDataFragment extends Fragment {
     }
 
 
-    private void startLogin() {
 
+    private void startLogin() {
 
         ApiCallsInterFace cancerApiService = ApiCallAdapter.getClient
                 (getActivity()).create(ApiCallsInterFace.class);
 
+
         Call<LiveDataResponse> call = cancerApiService.liveResponse();
+
 
         call.enqueue(new Callback<LiveDataResponse>() {
             @Override
