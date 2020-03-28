@@ -20,4 +20,5 @@ public class Constants {
     public static final String OK = "ok";
     public static final String ADDRESS = "address";
     public static final String TOKEN = "token";
+    public static final String EMAIL = "email";
 }

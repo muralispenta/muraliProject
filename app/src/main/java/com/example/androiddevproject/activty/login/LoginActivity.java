@@ -99,8 +99,10 @@ public class LoginActivity  extends AppCompatActivity {
 
         JSONObject jsonLogin = new JSONObject();
         try {
-            jsonLogin.put(Constants.NAME, name);
-            jsonLogin.put(Constants.PASSWORD, password);
+            /*jsonLogin.put(Constants.NAME, name);
+            jsonLogin.put(Constants.PASSWORD, password);*/
+            jsonLogin.put(Constants.EMAIL, "eve.holt@reqres.in");
+            jsonLogin.put(Constants.PASSWORD, "cityslicka");
 
         } catch (Exception e) {
            // Crashlytics.logException(e);

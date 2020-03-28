@@ -29,6 +29,6 @@ public class LoginResponse  implements IApiResponse {
 private String token;
     @Override
     public boolean isSuccess() {
-        return status.equalsIgnoreCase(Constants.OK);
+        return !token.isEmpty();
     }
 }
