@@ -34,15 +34,12 @@ public class UserProfileFragment extends Fragment {
 
     private ImageView imgProfile;
     private TextView txtUsername;
+    private UserDetails userDetails;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_avtar, container, false);
-
-
-
-
     }
 
     @Override
@@ -53,13 +50,12 @@ public class UserProfileFragment extends Fragment {
         txtUsername = view.findViewById(R.id.txtUserName);
         super.onActivityCreated(savedInstanceState);
         Bundle bundle = getArguments();
-        assert bundle != null;
-        UserDetails data = bundle.getParcelable(Constants.DATA);
-
+        if(bundle == null) return;
+       userDetails = bundle.getParcelable(Constants.DATA);
     }
 
 
-    private void renderProfile(UserDetails userDetails) {
+    private void renderProfile() {
 
 
 

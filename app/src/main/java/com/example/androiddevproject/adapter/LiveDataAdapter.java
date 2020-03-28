@@ -56,7 +56,6 @@ public class LiveDataAdapter<C> extends RecyclerView.Adapter<RecyclerView.ViewHo
         int viewType = holder.getItemViewType();
         LiveData liveDatal = liveData.get(position);
         LiveViewHolder liveViewHolder = (LiveViewHolder) holder;
-        liveViewHolder.itemView.setTag(R.id.data,liveDatal);
 
         TextView txtEmail = liveViewHolder.getTxtEmail();
         txtEmail.setText(liveDatal.getName());
@@ -66,7 +65,7 @@ public class LiveDataAdapter<C> extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         LinearLayout linearLayout = liveViewHolder.getLinearLayout();
         linearLayout.setOnClickListener(userDetailsOnClickLister);
-
+        linearLayout.setTag(R.id.data,liveDatal);
     }
 
 
@@ -125,6 +124,7 @@ public class LiveDataAdapter<C> extends RecyclerView.Adapter<RecyclerView.ViewHo
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
             UserProfileFragment fragment2 = new UserProfileFragment();
             Bundle bundle = new Bundle();
+            bundle.putParcelable(Constants.DATA,liveData);
             activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame,
                     fragment2).addToBackStack(null).commit();
 
