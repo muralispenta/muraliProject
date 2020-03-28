@@ -19,6 +19,7 @@ import com.example.androiddevproject.ApiCallsInterFace;
 import com.example.androiddevproject.ApiResponse.LoginResponse;
 import com.example.androiddevproject.R;
 import com.example.androiddevproject.UserDetails;
+import com.example.androiddevproject.model.LiveData;
 import com.example.androiddevproject.utils.Constants;
 
 import org.json.JSONObject;
@@ -34,7 +35,7 @@ public class UserProfileFragment extends Fragment {
 
     private ImageView imgProfile;
     private TextView txtUsername;
-    private UserDetails userDetails;
+    private LiveData userDetails;
 
     @Nullable
     @Override
@@ -51,7 +52,9 @@ public class UserProfileFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         Bundle bundle = getArguments();
         if(bundle == null) return;
-       userDetails = bundle.getParcelable(Constants.DATA);
+       userDetails = (LiveData) bundle.getParcelable(Constants.DATA);
+
+       renderProfile();
     }
 
 

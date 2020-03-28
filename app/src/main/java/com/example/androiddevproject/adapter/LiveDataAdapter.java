@@ -125,6 +125,7 @@ public class LiveDataAdapter<C> extends RecyclerView.Adapter<RecyclerView.ViewHo
             UserProfileFragment fragment2 = new UserProfileFragment();
             Bundle bundle = new Bundle();
             bundle.putParcelable(Constants.DATA,liveData);
+            fragment2.setArguments(bundle);
             activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame,
                     fragment2).addToBackStack(null).commit();
 
