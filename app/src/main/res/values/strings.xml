@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">AndroidDevProject</string>
+    <string name="logo">Logo</string>
+    <string name="loginPassword">Password</string>
+    <string name="loginEmailPhone">Username</string>
+    <string name="login">Login</string>
+    <string name="empty_password_error">Please enter your password</string>
+    <string name="email_username_error">Please enter username</string>
+    <string name="connectionOffline">No network connection!\nPlease check your Internet connection</string>
+</resources>
