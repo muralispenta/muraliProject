@@ -1,5 +1,7 @@
 package com.example.androiddevproject.adapter;
 
+import android.app.Activity;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,9 +23,10 @@ public class LiveDataAdapter<C> extends RecyclerView.Adapter<RecyclerView.ViewHo
     private LayoutInflater layoutInflater;
     private C appOperationAware;
 
-    public LiveDataAdapter(ArrayList<LiveData> liveData, C appOperationAware) {
+    public LiveDataAdapter(ArrayList<LiveData> liveData, Activity activity) {
         this.liveData = liveData;
-        this.appOperationAware = appOperationAware;
+        layoutInflater = (LayoutInflater) activity.getSystemService
+                (Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @NonNull

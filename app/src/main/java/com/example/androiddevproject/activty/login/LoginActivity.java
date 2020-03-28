@@ -121,9 +121,7 @@ public class LoginActivity  extends AppCompatActivity {
                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 }else{
                     Toast.makeText(LoginActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
-
-
-                                    }
+                }
             }
 
             @Override

@@ -51,6 +51,7 @@ public class LiveDataFragment extends Fragment {
         if (view == null) return;
         recyclerView = view.findViewById(R.id.recylerview);
         super.onActivityCreated(savedInstanceState);
+        startLogin();
 
 }
 
@@ -59,7 +60,7 @@ public class LiveDataFragment extends Fragment {
             return;
         }
 
-        liveDataAdapter = new LiveDataAdapter(liveData , this);
+        liveDataAdapter = new LiveDataAdapter(liveData , getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
         recyclerView.addItemDecoration(new DividerItemDecoration(recyclerView.getContext(),
                 DividerItemDecoration.VERTICAL));
@@ -68,31 +69,19 @@ public class LiveDataFragment extends Fragment {
     }
 
 
-    private void startLogin(String name, String adress) {
+    private void startLogin() {
 
 
         ApiCallsInterFace cancerApiService = ApiCallAdapter.getClient
                 (getActivity()).create(ApiCallsInterFace.class);
 
-        JSONObject jsonLogin = new JSONObject();
-        try {
-            jsonLogin.put(Constants.NAME, name);
-            jsonLogin.put(Constants.PASSWORD, adress);
-
-        } catch (Exception e) {
-            // Crashlytics.logException(e);
-        }
-
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse(Constants.MEDIA_PARSE),
-                jsonLogin.toString());
-
-        Call<LiveDataResponse> call = cancerApiService.liveResponse(body);
+        Call<LiveDataResponse> call = cancerApiService.liveResponse();
 
         call.enqueue(new Callback<LiveDataResponse>() {
             @Override
             public void onResponse(@NonNull Call<LiveDataResponse> call,
                                    @NonNull Response<LiveDataResponse> response) {
-                if (response.body() != null && response.body().isSuccess()) {
+                if (response.body() != null && response.body().liveData != null) {
                     setAdapter(response.body().liveData);
                    // startActivity(new Intent(getActivity(), HomeActivity.class));
                 }else{
