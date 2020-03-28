@@ -35,7 +35,8 @@ public class UserProfileFragment extends Fragment {
 
     private ImageView imgProfile;
     private TextView txtUsername;
-    private LiveData userDetails;
+    private LiveData liveData;
+
 
     @Nullable
     @Override
@@ -52,17 +53,17 @@ public class UserProfileFragment extends Fragment {
         super.onActivityCreated(savedInstanceState);
         Bundle bundle = getArguments();
         if(bundle == null) return;
-       userDetails = (LiveData) bundle.getParcelable(Constants.DATA);
-
+        liveData = bundle.getParcelable(Constants.DATA);
        renderProfile();
     }
 
 
     private void renderProfile() {
 
+        txtUsername.setText(liveData.getName());
 
 
-        txtUsername.setText(userDetails.getName());
+
         //imgProfile.
     }
 

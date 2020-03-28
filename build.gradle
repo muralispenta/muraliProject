@@ -25,6 +25,7 @@ allprojects {
                 details.useVersion("3.3.2-5309881")
             }
         }
+
     }
 
 
