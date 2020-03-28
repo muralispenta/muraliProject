@@ -12,20 +12,21 @@ public class LoginResponse  implements IApiResponse {
     @SerializedName(Constants.MESSAGE)
     public String message;
 
+//
+//    @SerializedName(Constants.DATA)
+//    public UserDetails userDetails;
+//
+//    @SerializedName(Constants.PAGE)
+//    private int page;
+//
+//    @SerializedName(Constants.PER_PAGE)
+//    private int per_page;
+//
+//    @SerializedName(Constants.TOTAL_PAGES)
+//    private int total_pages;
 
-    @SerializedName(Constants.DATA)
-    public UserDetails userDetails;
-
-    @SerializedName(Constants.PAGE)
-    private int page;
-
-    @SerializedName(Constants.PER_PAGE)
-    private int per_page;
-
-    @SerializedName(Constants.TOTAL_PAGES)
-    private int total_pages;
-
-
+@SerializedName(Constants.TOKEN)
+private String token;
     @Override
     public boolean isSuccess() {
         return status.equalsIgnoreCase(Constants.OK);

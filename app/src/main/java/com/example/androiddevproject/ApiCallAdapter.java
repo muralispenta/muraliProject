@@ -64,7 +64,24 @@ public class ApiCallAdapter {
         }*/
         okHttpClient = builder.build();
         return okHttpClient;
+
     }
 
+
+    /*private static Interceptor getHttpLoggingInterceptor(Context context) {
+
+        HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        interceptor.setLevel(getHttpLoggingLevel(context));
+        return interceptor;
+    }
+
+    private static HttpLoggingInterceptor.Level getHttpLoggingLevel(Context context) {
+        try {
+            return HttpLoggingInterceptor.Level.valueOf(String.valueOf(HttpLoggingInterceptor.Level.BODY));
+        } catch (Throwable t) {
+            //Ignore
+        }
+        return HttpLoggingInterceptor.Level.NONE;
+    }*/
 }
 

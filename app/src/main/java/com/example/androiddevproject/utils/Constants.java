@@ -6,7 +6,7 @@ public class Constants {
     //UserDettailsData
     public static final String DATA = "data";
     public static final String ID = "id";
-    public static final String NAME =  "name";
+    public static final String NAME =  "email";
     public static final String YEAR = "year";
     public static final String COLOR = "color";
     public static final String  pantone_value = "pantone_value";
@@ -18,4 +18,6 @@ public class Constants {
     public static final String STATUS = "status";
     public static final String MESSAGE = "message";
     public static final String OK = "ok";
+    public static final String ADDRESS = "address";
+    public static final String TOKEN = "token";
 }
