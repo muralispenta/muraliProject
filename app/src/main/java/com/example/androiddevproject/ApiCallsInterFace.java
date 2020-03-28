@@ -1,5 +1,6 @@
 package com.example.androiddevproject;
 
+import com.example.androiddevproject.ApiResponse.LiveDataResponse;
 import com.example.androiddevproject.ApiResponse.LoginResponse;
 
 import okhttp3.RequestBody;
@@ -12,8 +13,13 @@ public interface ApiCallsInterFace {
 
 
     @Headers({"Content-Type: application/json"})
-    @POST("/user/login_android")
+    @POST("login")
     Call<LoginResponse> login(@Body RequestBody jsonLogin);
+
+    @Headers({"Content-Type: application/json"})
+    @POST("users")
+    Call<LiveDataResponse> liveResponse(@Body RequestBody jsonLogin);
+
 
 
 }

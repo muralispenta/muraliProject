@@ -117,8 +117,7 @@ public class LoginActivity  extends AppCompatActivity {
                                    @NonNull Response<LoginResponse> response) {
                 if (response.body() != null && response.body().isSuccess()) {
                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                    if (response.body().userDetails == null) return;
-                 } else{
+                }else{
                     Toast.makeText(LoginActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
 
 

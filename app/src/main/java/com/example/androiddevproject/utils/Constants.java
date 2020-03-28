@@ -1,7 +1,7 @@
 package com.example.androiddevproject.utils;
 
 public class Constants {
-    public static final String BASE_URL_LIVE = "https://reqres.in/api";
+    public static final String BASE_URL_LIVE = "https://reqres.in/api/";
 
     //UserDettailsData
     public static final String DATA = "data";
