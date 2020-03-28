@@ -53,6 +53,7 @@ public class UserProfileFragment extends Fragment {
         txtUsername = view.findViewById(R.id.txtUserName);
         super.onActivityCreated(savedInstanceState);
         Bundle bundle = getArguments();
+        assert bundle != null;
         UserDetails data = bundle.getParcelable(Constants.DATA);
 
     }

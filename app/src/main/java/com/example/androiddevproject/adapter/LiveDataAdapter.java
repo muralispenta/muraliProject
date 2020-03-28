@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androiddevproject.R;
+import com.example.androiddevproject.UserDetails;
 import com.example.androiddevproject.activty.HomeActivity;
 import com.example.androiddevproject.fragments.UserProfileFragment;
 import com.example.androiddevproject.model.LiveData;
@@ -55,6 +56,7 @@ public class LiveDataAdapter<C> extends RecyclerView.Adapter<RecyclerView.ViewHo
         int viewType = holder.getItemViewType();
         LiveData liveDatal = liveData.get(position);
         LiveViewHolder liveViewHolder = (LiveViewHolder) holder;
+        liveViewHolder.itemView.setTag(R.id.data,liveDatal);
 
         TextView txtEmail = liveViewHolder.getTxtEmail();
         txtEmail.setText(liveDatal.getName());
@@ -118,11 +120,11 @@ public class LiveDataAdapter<C> extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         @Override
         public void onClick(View v) {
+            LiveData liveData = (LiveData) v.getTag(R.id.data);
 
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
             UserProfileFragment fragment2 = new UserProfileFragment();
             Bundle bundle = new Bundle();
-            bundle.getParcelable(Constants.DATA);
             activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame,
                     fragment2).addToBackStack(null).commit();
 
