@@ -40,6 +40,9 @@ public class UserProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.layout_avtar, container, false);
 
+
+
+
     }
 
     @Override
@@ -49,36 +52,15 @@ public class UserProfileFragment extends Fragment {
         imgProfile = view.findViewById(R.id.imgProfile);
         txtUsername = view.findViewById(R.id.txtUserName);
         super.onActivityCreated(savedInstanceState);
+        Bundle bundle = getArguments();
+        UserDetails data = bundle.getParcelable(Constants.DATA);
 
-        singleUser();
     }
 
-    private void singleUser() {
-        ApiCallsInterFace cancerApiService = ApiCallAdapter.getClient
-                (getActivity()).create(ApiCallsInterFace.class);
-
-        JSONObject jsonObject = new JSONObject();
-        RequestBody body = RequestBody.create(okhttp3.MediaType.parse(Constants.MEDIA_PARSE),
-                jsonObject.toString());
-        Call<LoginResponse> call = cancerApiService.profileResponse(body);
-        call.enqueue(new Callback<LoginResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<LoginResponse> call,
-                                   @NonNull Response<LoginResponse> response) {
-                if (response.body() != null && response.body().isSuccess()) {
-
-                }else {
-
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
-            }
-        });
-    }
 
     private void renderProfile(UserDetails userDetails) {
+
+
 
         txtUsername.setText(userDetails.getName());
         //imgProfile.

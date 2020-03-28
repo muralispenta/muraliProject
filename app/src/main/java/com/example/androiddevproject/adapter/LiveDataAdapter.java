@@ -2,6 +2,7 @@ package com.example.androiddevproject.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import com.example.androiddevproject.R;
 import com.example.androiddevproject.activty.HomeActivity;
 import com.example.androiddevproject.fragments.UserProfileFragment;
 import com.example.androiddevproject.model.LiveData;
+import com.example.androiddevproject.utils.Constants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -119,6 +121,8 @@ public class LiveDataAdapter<C> extends RecyclerView.Adapter<RecyclerView.ViewHo
 
             AppCompatActivity activity = (AppCompatActivity) v.getContext();
             UserProfileFragment fragment2 = new UserProfileFragment();
+            Bundle bundle = new Bundle();
+            bundle.getParcelable(Constants.DATA);
             activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame,
                     fragment2).addToBackStack(null).commit();
 
