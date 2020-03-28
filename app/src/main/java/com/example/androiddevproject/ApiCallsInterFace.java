@@ -21,6 +21,9 @@ public interface ApiCallsInterFace {
     @GET("users")
     Call<LiveDataResponse> liveResponse();
 
+    @Headers({"Content-Type: application/json"})
+    @POST("users/2")
+    Call<LoginResponse> profileResponse(@Body RequestBody jsonLogin);
 
 
 }

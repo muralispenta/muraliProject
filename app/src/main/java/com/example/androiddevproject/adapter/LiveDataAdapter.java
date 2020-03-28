@@ -6,12 +6,19 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.androiddevproject.R;
+import com.example.androiddevproject.activty.HomeActivity;
+import com.example.androiddevproject.fragments.UserProfileFragment;
 import com.example.androiddevproject.model.LiveData;
 
 import java.util.ArrayList;
@@ -22,11 +29,16 @@ public class LiveDataAdapter<C> extends RecyclerView.Adapter<RecyclerView.ViewHo
     private ArrayList<LiveData> liveData;
     private LayoutInflater layoutInflater;
     private C appOperationAware;
+    private UserDetailsOnClickLister userDetailsOnClickLister;
 
     public LiveDataAdapter(ArrayList<LiveData> liveData, Activity activity) {
         this.liveData = liveData;
+
         layoutInflater = (LayoutInflater) activity.getSystemService
                 (Context.LAYOUT_INFLATER_SERVICE);
+        this.appOperationAware = appOperationAware;
+        this.userDetailsOnClickLister = new UserDetailsOnClickLister ();
+
     }
 
     @NonNull
@@ -48,6 +60,9 @@ public class LiveDataAdapter<C> extends RecyclerView.Adapter<RecyclerView.ViewHo
         TextView txtAddress = liveViewHolder.getTxtAddress();
         txtAddress.setText(liveDatal.getAddress());
 
+        LinearLayout linearLayout = liveViewHolder.getLinearLayout();
+        linearLayout.setOnClickListener(userDetailsOnClickLister);
+
     }
 
 
@@ -66,6 +81,7 @@ public class LiveDataAdapter<C> extends RecyclerView.Adapter<RecyclerView.ViewHo
 
         private TextView txtEmail;
         private TextView txtAddress;
+        private LinearLayout linearLayout;
 
 
         private LiveViewHolder(@NonNull View itemView) {
@@ -87,7 +103,26 @@ public class LiveDataAdapter<C> extends RecyclerView.Adapter<RecyclerView.ViewHo
             return txtAddress;
         }
 
+        private LinearLayout getLinearLayout(){
+            if (linearLayout == null){
+                linearLayout = itemView.findViewById(R.id.linearLayout);
+            }
+            return linearLayout;
+        }
 
+    }
+
+    private class  UserDetailsOnClickLister implements View.OnClickListener {
+
+        @Override
+        public void onClick(View v) {
+
+            AppCompatActivity activity = (AppCompatActivity) v.getContext();
+            UserProfileFragment fragment2 = new UserProfileFragment();
+            activity.getSupportFragmentManager().beginTransaction().replace(R.id.frame,
+                    fragment2).addToBackStack(null).commit();
+
+        }
     }
 
 }

@@ -1,6 +1,9 @@
 package com.example.androiddevproject.fragments;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,9 +18,12 @@ import com.example.androiddevproject.ApiCallAdapter;
 import com.example.androiddevproject.ApiCallsInterFace;
 import com.example.androiddevproject.ApiResponse.LoginResponse;
 import com.example.androiddevproject.R;
+import com.example.androiddevproject.UserDetails;
 import com.example.androiddevproject.utils.Constants;
 
 import org.json.JSONObject;
+
+import javax.sql.DataSource;
 
 import okhttp3.RequestBody;
 import retrofit2.Call;
@@ -43,6 +49,8 @@ public class UserProfileFragment extends Fragment {
         imgProfile = view.findViewById(R.id.imgProfile);
         txtUsername = view.findViewById(R.id.txtUserName);
         super.onActivityCreated(savedInstanceState);
+
+        singleUser();
     }
 
     private void singleUser() {
@@ -52,7 +60,7 @@ public class UserProfileFragment extends Fragment {
         JSONObject jsonObject = new JSONObject();
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse(Constants.MEDIA_PARSE),
                 jsonObject.toString());
-        Call<LoginResponse> call = cancerApiService.blockUser(body);
+        Call<LoginResponse> call = cancerApiService.profileResponse(body);
         call.enqueue(new Callback<LoginResponse>() {
             @Override
             public void onResponse(@NonNull Call<LoginResponse> call,
@@ -60,16 +68,20 @@ public class UserProfileFragment extends Fragment {
                 if (response.body() != null && response.body().isSuccess()) {
 
                 }else {
-                    showGenericApiError();
+
                 }
             }
 
             @Override
-            public void onFailure(@NonNull Call<BaseApiResponse> call, @NonNull Throwable t) {
-                hideProgressDialog();
-                showGenericApiError();
+            public void onFailure(@NonNull Call<LoginResponse> call, @NonNull Throwable t) {
             }
         });
+    }
+
+    private void renderProfile(UserDetails userDetails) {
+
+        txtUsername.setText(userDetails.getName());
+        //imgProfile.
     }
 
 }
