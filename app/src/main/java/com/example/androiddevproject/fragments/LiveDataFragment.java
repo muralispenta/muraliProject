@@ -1,6 +1,8 @@
 package com.example.androiddevproject.fragments;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -23,6 +25,9 @@ import com.example.androiddevproject.activty.HomeActivity;
 import com.example.androiddevproject.activty.login.LoginActivity;
 import com.example.androiddevproject.adapter.LiveDataAdapter;
 import com.example.androiddevproject.model.LiveData;
+import com.example.androiddevproject.sqlite.AppDatabaseClient;
+import com.example.androiddevproject.sqlite.UserDao;
+import com.example.androiddevproject.sqlite.UserEntity;
 import com.example.androiddevproject.utils.Constants;
 
 import org.json.JSONObject;
@@ -85,6 +90,7 @@ public class LiveDataFragment extends Fragment {
                                    @NonNull Response<LiveDataResponse> response) {
                 if (response.body() != null && response.body().liveData != null) {
                     setAdapter(response.body().liveData);
+                    saveUserToDatabase(response.body().liveData);
                    // startActivity(new Intent(getActivity(), HomeActivity.class));
                 }else{
                     Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_SHORT).show();
@@ -99,6 +105,46 @@ public class LiveDataFragment extends Fragment {
             }
         });
     }
+
+    private void saveUserToDatabase(final ArrayList<LiveData> users) {
+
+        @SuppressLint("StaticFieldLeak")
+        class SaveTask extends AsyncTask<Void, Void, Void> {
+
+            @Override
+            protected Void doInBackground(Void... voids) {
+
+                //adding to database
+                UserDao userDao = AppDatabaseClient.getInstance(getActivity()).getAppDatabase()
+                        .userDao();
+
+                userDao.deletAll();
+
+                for (LiveData user : users) {
+
+                    UserEntity userEntity = new UserEntity();
+                    userEntity.setEmail(user.getName());
+                    userEntity.setFirstName(user.getFirst_name());
+
+                    userDao.insert(userEntity);
+                }
+
+
+
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+            }
+        }
+
+        SaveTask st = new SaveTask();
+        st.execute();
+
+    }
+
 
 
 }

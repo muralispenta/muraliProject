@@ -18,6 +18,22 @@
         android:layout_below="@id/imgProfile"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:id="@+id/txtFullName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtUserName"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/txtLastName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txtFullName"
+        android:layout_centerHorizontal="true" />
+
+
+
 
 
 </RelativeLayout>

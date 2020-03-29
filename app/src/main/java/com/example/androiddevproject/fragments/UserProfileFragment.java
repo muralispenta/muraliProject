@@ -34,7 +34,7 @@ import retrofit2.Response;
 public class UserProfileFragment extends Fragment {
 
     private ImageView imgProfile;
-    private TextView txtUsername;
+    private TextView txtUsername,txtFullName,txtLastName;
     private LiveData liveData;
 
 
@@ -50,6 +50,8 @@ public class UserProfileFragment extends Fragment {
         if (view == null) return;
         imgProfile = view.findViewById(R.id.imgProfile);
         txtUsername = view.findViewById(R.id.txtUserName);
+        txtFullName = view.findViewById(R.id.txtFullName);
+        txtLastName = view.findViewById(R.id.txtLastName);
         super.onActivityCreated(savedInstanceState);
         Bundle bundle = getArguments();
         if(bundle == null) return;
@@ -61,6 +63,8 @@ public class UserProfileFragment extends Fragment {
     private void renderProfile() {
 
         txtUsername.setText(liveData.getName());
+        txtFullName.setText(liveData.getFirst_name());
+        txtLastName.setText(liveData.getLast_name());
 
 
 

@@ -14,11 +14,21 @@ public class LiveData implements Parcelable {
     private String name;
     @SerializedName(Constants.AVATAR)
     private String avatar;
+    @SerializedName(Constants.FIRST_NAME)
+    private String first_name;
+    @SerializedName(Constants.LAST_NAME)
+    private String last_name;
+    /*@SerializedName(Constants.EMAIL)
+    private String email;*/
 
-    public LiveData(String address, String name,String avatar) {
+
+    public LiveData(String address, String name, String avatar, String first_name, String last_name/*,String email*/) {
         this.address = address;
         this.name = name;
         this.avatar = avatar;
+        this.first_name = first_name;
+        this.last_name = last_name;
+      //  this.email = email;
     }
 
     public String getAddress() {
@@ -32,6 +42,18 @@ public class LiveData implements Parcelable {
     public String getAvatar() {
         return avatar;
     }
+
+    public String getFirst_name() {
+        return first_name;
+    }
+
+    public String getLast_name() {
+        return last_name;
+    }
+
+    /*public String getEmail() {
+        return email;
+    }*/
 
     protected LiveData(Parcel in) {
     }
@@ -59,5 +81,8 @@ public class LiveData implements Parcelable {
         dest.writeString(name);
         dest.writeString(address);
         dest.writeString(avatar);
+        dest.writeString(first_name);
+        dest.writeString(last_name);
+      //  dest.writeString(email);
     }
 }
